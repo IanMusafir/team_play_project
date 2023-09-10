@@ -7,7 +7,7 @@ const port = 4000
 
 app.use(express.json())
 
-
+//this is only for test 
 mongoose.connect('mongodb+srv://musafir:2124@cluster0.cl3ulb5.mongodb.net/Poetry')
 .then(() => console.log('Сервер успешно подключен'))
 .catch((error) => console.log('Произошла ошибка подключения к серверу'))
@@ -15,5 +15,5 @@ mongoose.connect('mongodb+srv://musafir:2124@cluster0.cl3ulb5.mongodb.net/Poetry
 app.listen(port, () => {
     console.log('Подключение успешно');
 })
-
+//imagine that here is new code and im about to add to my master branch
 
