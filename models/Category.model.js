@@ -6,7 +6,7 @@ const categorySchema = mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Post"
     },
-    
+
 
 })
 const Category = mongoose.model("Category", categorySchema)
