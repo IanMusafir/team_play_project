@@ -47,5 +47,16 @@ module.exports.postControllers = {
         } catch (error) {
             res.json(error)
         }
-    }
+    },
+    getTopPosts: async (req, res) => {
+        try {
+          const topPosts = await Post.find()
+            .sort({ viewsCounter: -1 }) // Сортируем по убыванию viewsCounter
+            .limit(3); // Получаем только топ 3
+      
+          res.json(topPosts);
+        } catch (error) {
+          res.status(500).json({ message: error.message });
+        }
+      },
 }
