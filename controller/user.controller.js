@@ -1,20 +1,52 @@
 //сюда пишем контроллер для пользователей const User = require('../models/User.model')
-const User = require('../models/User.model')
+require("dotenv").config();
 
+const User = require("../models/User.model");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports.userController = {
   createUser: async (req, res) => {
     try {
+        const { login, password, avatarURL, nickName } = req.body;
+
+      const hash = await bcrypt.hash(
+        password,
+        Number(process.env.BCRYPT_ROUNDS)
+      );
+
       const data = await User.create({
-        avatarURL:req.body.avatarURL,
-        nickName: req.body.nickName,
-        login: req.body.login,
-        password: req.body.password,
+        avatarURL: avatarURL,
+        nickName: nickName,
+        login: login,
+        password: hash.toString(),
       });
+
       return res.json(data);
     } catch (error) {
-      res.json({message:error.toString()});
+      res.json({ message: error.toString() });
     }
+  },
+
+  login: async (req, res) => {
+    const { login, password } = req.body;
+    const candidate = await User.findOne({ login });
+    if (!candidate) {
+      return res.json("неверный логин");
+    }
+    const valid = await bcrypt.compare(password, candidate.password);
+    if (!valid) {
+      return res.status(401).json("неверный пароль");
+    }
+    const payload = {
+      id: candidate._id,
+      login: candidate.login,
+    };
+
+    const token = await jwt.sign(payload, process.env.SECRET_JWT_KEY, {
+      expiresIn: "30d",
+    });
+    res.json(token);
   },
 
   patchUser: async (req, res) => {
@@ -37,7 +69,7 @@ module.exports.userController = {
     try {
       const data = await User.find();
 
-      res.json(data,"dfdsf");
+      res.json(data, "dfdsf");
     } catch (error) {
       res.json(error);
     }
