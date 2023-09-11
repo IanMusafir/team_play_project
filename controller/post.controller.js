@@ -39,5 +39,13 @@ try {
 } catch (error) {
     res.json(error)
 }
-    }
+    },
+    getOnePost: async(req,res)=>{
+        try {
+            const data = await Post.findById(req.params.id)
+            res.json(data)
+        } catch (error) {
+            res.json(error)
+        }
+            }
 }

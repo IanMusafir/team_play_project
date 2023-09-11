@@ -4,9 +4,9 @@ const {categoryControllers} = require("../controller/category.controllers")
 const router = Router()
 
 
-router.post('/Posts', categoryControllers.createCategory)
-router.get('/Posts', categoryControllers.getCategories)
-router.delete('/Posts', categoryControllers.deleteCategory)
-router.patch('/Posts', categoryControllers.patchCategory)
+router.post('/Category', categoryControllers.createCategory)
+router.get('/Category', categoryControllers.getCategories)
+router.delete('/Category', categoryControllers.deleteCategory)
+router.patch('/Category', categoryControllers.patchCategory)
 
 module.exports = router
