@@ -1,13 +1,13 @@
 
-
+const {registerValidator} = require("../validation/validation")
 const {Router} = require("express")
 const {userController} = require("../controller/user.controller")
 
 const router = Router()
 
 
-router.post('/user', userController.createUser) //регистрация
-router.post('/login', userController.login) //вход в акк
+router.post('/user',registerValidator, userController.createUser) //регистрация
+router.post('/login',registerValidator, userController.login) //вход в акк
 
 router.get('/user', userController.getUser) //получить юзеры
 router.get('/user/:id', userController.getOneUser)//получить именно одного юзера
