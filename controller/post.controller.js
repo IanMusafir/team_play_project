@@ -5,6 +5,8 @@ module.exports.postControllers = {
     createPost: async (req, res) => {
         try {
             const data = await Post.create({
+                img: req.body.img,
+                desc: req.body.desc,
                 document: req.body.document,
                 user: req.body.user,
                 category: req.body.category
