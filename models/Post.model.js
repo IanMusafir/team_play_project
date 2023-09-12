@@ -9,7 +9,11 @@ const postSchema = mongoose.Schema({
     category: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Category"
-    }
+    },
+    viewsCount: {
+        type: Number,
+        default: 0,
+      },
 
 
 })
