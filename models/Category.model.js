@@ -4,7 +4,7 @@ const categorySchema = mongoose.Schema({
     title: String,
     post: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: "Post"
+           ref: "Post"
     },
 
 
