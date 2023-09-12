@@ -18,6 +18,7 @@ module.exports.userController = {
       }
 
       if (candidate) {
+
         return res.status(400).json({ error: "пользователь уже существует" });
       }
 
