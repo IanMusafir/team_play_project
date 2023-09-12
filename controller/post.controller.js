@@ -40,12 +40,34 @@ module.exports.postControllers = {
             res.json(error)
         }
     },
-    getOnePost: async (req, res) => {
+    getPostById: async (req, res) => {
         try {
-            const data = await Post.findById(req.params.id)
-            res.json(data)
-        } catch (error) {
-            res.json(error)
+          const postId = req.params.id;
+          const data = await Post.findByIdAndUpdate(
+            postId,
+            { $inc: { viewsCount: 1 } },
+            { returnDocument: "after" }
+          );
+    
+          if (!data) {
+            return res.status(403).json({ error: "Invalid user." });
+          }
+    
+          res.status(200).json(data);
+        } catch (err) {
+          console.log(err);
+          res.status(500).json({ message: "Не удалось вернуть статью" });
         }
-    }
+      },
+    getTopPosts: async (req, res) => {
+        try {
+          const topPosts = await Post.find()
+            .sort({ viewsCounter: -1 }) // Сортируем по убыванию viewsCounter
+            .limit(3); // Получаем только топ 3
+      
+          res.json(topPosts);
+        } catch (error) {
+          res.status(500).json({ message: error.message });
+        }
+      },
 }

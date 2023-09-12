@@ -4,10 +4,10 @@ const {postControllers} = require("../controller/post.controller")
 const router = Router()
 
 
-router.post('/Posts', postControllers.createPost)
-router.get('/Posts', postControllers.getPost)
-router.get('/Posts/:id', postControllers.getOnePost)
-router.delete('/Posts', postControllers.deletePost)
-router.patch('/Posts', postControllers.patchPost)
+router.post('/post', postControllers.createPost)
+router.get('/post', postControllers.getPost)
+router.get('/post/:id', postControllers.getPostById)
+router.delete('/post', postControllers.deletePost)
+router.patch('/post', postControllers.patchPost)
 
 module.exports = router
