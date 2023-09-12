@@ -1,15 +1,18 @@
 //Это минимальный сервер, установленные зависимости читайте в package.json
 const express = require('express');
 const mongoose = require('mongoose');
+
 const cors = require('cors')
 const app = express()
 const port = 4000
 
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(express.json())
 app.use(cors())
 app.use(require('./router/post.route'))
 app.use(require('./router/category.route'))
 app.use(require('./router/user.route'))
+app.use(require('./router/pdf.route'))
 
 
 
