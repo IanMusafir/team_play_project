@@ -1,6 +1,12 @@
 const mongoose = require("mongoose")
 
 const postSchema = mongoose.Schema({
+    imageURL: String,
+    title: String,
+    desc: {
+        type: String,
+        required: true
+    },
     document: String,
     user: {
         type: mongoose.SchemaTypes.ObjectId,
@@ -9,7 +15,11 @@ const postSchema = mongoose.Schema({
     category: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Category"
-    }
+    },
+    viewsCount: {
+        type: Number,
+        default: 0,
+      },
 
 
 })

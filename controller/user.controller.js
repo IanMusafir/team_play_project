@@ -4,11 +4,22 @@ require("dotenv").config();
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { validationResult } = require("express-validator");
 
 module.exports.userController = {
   createUser: async (req, res) => {
     try {
-        const { login, password, avatarURL, nickName } = req.body;
+      const { login, password, avatarURL, nickName } = req.body;
+      const candidate = await User.findOne({ login });
+      const errors = validationResult(req);
+
+      if (!errors.isEmpty()) {
+        return res.status(400).json(errors.array());
+      }
+
+      if (candidate) {
+        return res.json(400).json({ error: "пользователь уже существует" });
+      }
 
       const hash = await bcrypt.hash(
         password,
@@ -31,6 +42,7 @@ module.exports.userController = {
   login: async (req, res) => {
     const { login, password } = req.body;
     const candidate = await User.findOne({ login });
+
     if (!candidate) {
       return res.json("неверный логин");
     }

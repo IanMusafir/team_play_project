@@ -8,11 +8,12 @@ const {postControllers} = require("../controller/post.controller")
 const router = Router()
 
 
-router.post('/posts', postControllers.createPost)
-router.get('/posts', postControllers.getPost)
-router.get('/posts/:id', postControllers.getOnePost)
-router.delete('/posts', postControllers.deletePost)
-router.patch('/posts/:id', postControllers.patchPost)
+router.post('/post', postControllers.createPost)
+router.get('/post', postControllers.getPost)
+router.get('/post/top', postControllers.getTopPosts)
+router.get('/post/:id', postControllers.getPostById)
+router.delete('/post', postControllers.deletePost)
+router.patch('/post', postControllers.patchPost)
 
 module.exports = router
 
