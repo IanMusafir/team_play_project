@@ -18,7 +18,8 @@ module.exports.userController = {
       }
 
       if (candidate) {
-        return res.json(400).json({ error: "пользователь уже существует" });
+
+        return res.status(400).json({ error: "пользователь уже существует" });
       }
 
       const hash = await bcrypt.hash(
@@ -35,7 +36,7 @@ module.exports.userController = {
 
       return res.json(data);
     } catch (error) {
-      res.json({ message: error.toString() });
+      return res.json({ message: error.toString() });
     }
   },
 
@@ -81,7 +82,7 @@ module.exports.userController = {
     try {
       const data = await User.find();
 
-      res.json(data, "dfdsf");
+      res.json(data);
     } catch (error) {
       res.json(error);
     }

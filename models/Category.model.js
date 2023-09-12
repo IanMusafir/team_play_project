@@ -5,7 +5,7 @@ const categorySchema = mongoose.Schema({
 
     post: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: "Post"
+           ref: "Post"
     },
 
 

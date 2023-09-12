@@ -15,8 +15,6 @@ router.get('/post/:id', postControllers.getPostById)
 router.delete('/post', postControllers.deletePost)
 router.patch('/post', postControllers.patchPost)
 
+
 module.exports = router
-
-
-
 
