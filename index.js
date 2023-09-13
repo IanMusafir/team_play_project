@@ -7,10 +7,10 @@ const port = 4000
 
 app.use(express.json())
 app.use(cors())
+app.use(require('./router/comments.route'))
 app.use(require('./router/post.route'))
 app.use(require('./router/category.route'))
 app.use(require('./router/user.route'))
-
 
 
 mongoose.connect('mongodb+srv://musafir:2124@cluster0.cl3ulb5.mongodb.net/Poetry')

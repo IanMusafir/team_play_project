@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 
 const postSchema = mongoose.Schema({
     imageURL: String,
+    title: String,
     desc: {
         type: String,
         required: true
