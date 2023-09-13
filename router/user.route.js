@@ -6,7 +6,7 @@ const {userController} = require("../controller/user.controller")
 const router = Router()
 
 
-router.post('/user',registerValidator, userController.createUser) //регистрация
+router.post('/user', userController.createUser) //регистрация
 router.post('/login',registerValidator, userController.login) //вход в акк
 
 router.get('/user', userController.getUser) //получить юзеры
