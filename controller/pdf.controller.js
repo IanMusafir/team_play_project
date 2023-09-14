@@ -1,6 +1,12 @@
 const pdfController ={
     uploadPdf: (req, res) => {
-        res.json('Ok')
+        try {
+           res.json({
+            url: `/uploads/${req.file.originalname}`
+           })
+        } catch (error) {
+            res.json({error: error.message})
+        }
     }
 }
 

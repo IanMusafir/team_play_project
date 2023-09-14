@@ -12,8 +12,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage})
 
-
-const types = ['application/pdf', "application/svg", 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+const types = ['image/png', "application/svg", 'image/jpeg', 'image/jpg']
 
 const fileFilter = (req, file, cb) => {
     if (types.includes(file.mimetype)) {
