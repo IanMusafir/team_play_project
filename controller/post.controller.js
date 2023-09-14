@@ -5,7 +5,8 @@ module.exports.postControllers = {
     createPost: async (req, res) => {
         try {
             const data = await Post.create({
-                img: req.body.img,
+                title: req.body.title,
+                imageURL: req.body.imageURL,
                 desc: req.body.desc,
                 document: req.body.document,
                 user: req.body.user,
@@ -48,7 +49,7 @@ module.exports.postControllers = {
             postId,
             { $inc: { viewsCount: 1 } },
             { returnDocument: "after" }
-          );
+          )
     
           if (!data) {
             return res.status(403).json({ error: "Invalid user." });
@@ -63,7 +64,7 @@ module.exports.postControllers = {
     getTopPosts: async (req, res) => {
         try {
           const topPosts = await Post.find()
-            .sort({ viewsCounter: -1 }) // Сортируем по убыванию viewsCounter
+            .sort({ viewsCounter: - 1 }) // Сортируем по убыванию viewsCounter
             .limit(3); // Получаем только топ 3
       
           res.json(topPosts);
