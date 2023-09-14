@@ -50,7 +50,7 @@ module.exports.postControllers = {
             postId,
             { $inc: { viewsCount: 1 } },
             { returnDocument: "after" }
-          );
+          )
     
           if (!data) {
             return res.status(403).json({ error: "Invalid user." });
