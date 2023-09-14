@@ -6,14 +6,14 @@ const cors = require('cors')
 const app = express()
 const port = 4000
 
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use('/uploads', express.static('uploads'));
 app.use(express.json())
 app.use(cors())
 app.use(require('./router/comments.route'))
 app.use(require('./router/post.route'))
 app.use(require('./router/category.route'))
 app.use(require('./router/user.route'))
-app.use(require('./router/pdf.route'))
+app.use(require('./router/doc.route'))
 
 
 mongoose.connect('mongodb+srv://musafir:2124@cluster0.cl3ulb5.mongodb.net/Poetry')
