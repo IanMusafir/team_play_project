@@ -36,11 +36,10 @@ module.exports.postControllers = {
     },
     getPost: async (req, res) => {
         try {
-            const data = await Post.find({})
-
+            const data = await Post.find().populate('user')
             res.json(data)
         } catch (error) {
-            res.json(error)
+            res.json({message:error.toString()})
         }
     },
     getPostById: async (req, res) => {

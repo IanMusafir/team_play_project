@@ -8,8 +8,8 @@ const { validationResult } = require("express-validator");
 
 module.exports.userController = {
   createUser: async (req, res) => {
+    const { login, password, avatarURL, nickName } = req.body;
     try {
-      const { login, password, avatarURL, nickName } = req.body;
       const candidate = await User.findOne({ login });
       const errors = validationResult(req);
 
@@ -18,24 +18,22 @@ module.exports.userController = {
       }
 
       if (candidate) {
-        return res.json(400).json({ error: "пользователь уже существует" });
+
+        return res.status(400).json({ error: "пользователь уже существует" });
       }
 
-      const hash = await bcrypt.hash(
-        password,
-        Number(process.env.BCRYPT_ROUNDS)
-      );
-
+      const hash = await bcrypt.hashSync(password, Number(process.env.BCRYPT_ROUNDS));
+      console.log(hash);
       const data = await User.create({
         avatarURL: avatarURL,
         nickName: nickName,
         login: login,
-        password: hash.toString(),
+        password: hash,
       });
 
       return res.json(data);
     } catch (error) {
-      res.json({ message: error.toString() });
+      return res.json({ message: error.toString() });
     }
   },
 
@@ -81,7 +79,7 @@ module.exports.userController = {
     try {
       const data = await User.find();
 
-      res.json(data, "dfdsf");
+      res.json(data);
     } catch (error) {
       res.json(error);
     }
