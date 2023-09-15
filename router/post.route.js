@@ -14,6 +14,7 @@ router.get('/post/top', postControllers.getTopPosts)
 router.get('/post/:id', postControllers.getPostById)
 router.delete('/post', postControllers.deletePost)
 router.patch('/post', postControllers.patchPost)
+router.get('/post/category/:id', postControllers.getPostCategory)
 
 
 module.exports = router

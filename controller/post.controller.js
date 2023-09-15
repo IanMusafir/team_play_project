@@ -71,4 +71,12 @@ module.exports.postControllers = {
           res.status(500).json({ message: error.message });
         }
       },
+      getPostCategory: async (req,res)=>{
+        try {
+          const data = await Post.find({category: req.params.id})
+          res.json(data)
+        } catch (error) {
+          res.json({error:error.message})
+        }
+      }
 }
