@@ -7,6 +7,7 @@ module.exports.postControllers = {
             const data = await Post.create({
               imageURL: req.body.imageURL,
                 desc: req.body.desc,
+                title: req.body.title,
                 document: req.body.document,
                 user: req.body.user,
                 category: req.body.category
