@@ -8,6 +8,7 @@ module.exports.postControllers = {
                 title: req.body.title,
                 imageURL: req.body.imageURL,
                 desc: req.body.desc,
+                title: req.body.title,
                 document: req.body.document,
                 user: req.body.user,
                 category: req.body.category
